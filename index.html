@@ -25,10 +25,14 @@ a{color:#3A6A2C}a:hover{color:#24461A}
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3A6A2C" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22V12M12 12L6 6M12 12l6-6M6 6V2M6 6H2M18 6V2M18 6h4M12 16l-4-2M12 16l4-2"></path></svg>
 Arbor Lab
 </a>
-<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px">
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
 <a href="#features" style="padding: 10px 14px; text-decoration: none; color: #18241B; font-weight: 500">Features</a>
 <a href="#support" style="padding: 10px 14px; text-decoration: none; color: #18241B; font-weight: 500">Support</a>
 <a href="#privacy" style="padding: 10px 14px; text-decoration: none; color: #18241B; font-weight: 500">Privacy</a>
+<div role="group" aria-label="Language / Idioma" style="display: flex; gap: 2px; padding: 3px; margin-left: 8px; border-radius: 999px; background: #E3E6DE">
+<button type="button" data-lang="en" lang="en" aria-label="English" style="min-width: 44px; min-height: 38px; padding: 0 12px; border: 0; border-radius: 999px; font: 600 14px 'IBM Plex Mono', monospace; cursor: pointer">EN</button>
+<button type="button" data-lang="es" lang="es" aria-label="Español" style="min-width: 44px; min-height: 38px; padding: 0 12px; border: 0; border-radius: 999px; font: 600 14px 'IBM Plex Mono', monospace; cursor: pointer">ES</button>
+</div>
 </nav>
 </header>
 
@@ -159,15 +163,71 @@ Arbor Lab
 
 </div>
 <script>
-document.getElementById('email-reveal').addEventListener('click', function () {
+(function () {
+  var PAIRS = [["<span style=\"background: #FFFFFF; border: 1px solid #D3D9CD; border-radius: 999px; padding: 4px 12px\">p1: A −(0.7)→ …</span>\n<span style=\"background: #FFFFFF; border: 1px solid #D3D9CD; border-radius: 999px; padding: 4px 12px\">10,128 modules</span>", "<span style=\"background: #FFFFFF; border: 1px solid #D3D9CD; border-radius: 999px; padding: 4px 12px\">p1: A −(0.7)→ …</span>\n<span style=\"background: #FFFFFF; border: 1px solid #D3D9CD; border-radius: 999px; padding: 4px 12px\">10.128 módulos</span>"],["Features", "Funciones"], ["Support", "Soporte"], ["Privacy", "Privacidad"], ["For iPad and iPhone", "Para iPad y iPhone"], ["Grow trees from a handful of rules.", "Haz crecer árboles con un puñado de reglas."], ["Write an axiom, add a few rewriting rules, and watch a plant unfold. Built on the classic models from <a href=\"https://algorithmicbotany.org/papers/#abop\"><em>The Algorithmic Beauty of Plants</em></a>, with a hands-on guide to the history and theory behind them.", "Escribe un axioma, añade unas pocas reglas de reescritura y mira cómo se despliega una planta. Basada en los modelos clásicos de <a href=\"https://algorithmicbotany.org/papers/#abop\"><em>The Algorithmic Beauty of Plants</em></a>, con una guía práctica sobre la historia y la teoría que hay detrás."], ["Download on TestFlight", "Descargar en TestFlight"], ["Get help", "Obtener ayuda"], ["A small lab for growing plants", "Un pequeño laboratorio para cultivar plantas"], ["Start from a classic, bend the rules, learn why it works, then put the result on your floor.", "Empieza con un clásico, retuerce las reglas, entiende por qué funciona y luego pon el resultado en tu salón."], ["Library", "Biblioteca"], ["Start from the classics", "Empieza por los clásicos"], ["Models from the book by Honda, Aono and Kunii, plus species sketches from Norway spruce to weeping willow. Tune leaves, bark and thickness, then scrub through each generation.", "Los modelos del libro de Honda, Aono y Kunii, y bocetos de especies desde la pícea de Noruega hasta el sauce llorón. Ajusta hojas, corteza y grosor, y recorre cada generación."], ["Tutorial · 10 chapters", "Tutorial · 10 capítulos"], ["Learn how it works", "Aprende cómo funciona"], ["From Logo’s turtle to Lindenmayer’s rewriting rules, with a playground on every page.", "De la tortuga de Logo a las reglas de reescritura de Lindenmayer, con un área de pruebas en cada página."], ["Pro · one-time unlock", "Pro · pago único"], ["Put it in your room", "Ponlo en tu casa"], ["Place your tree in AR, save high-resolution renders and export USDZ models. No subscription.", "Coloca tu árbol en realidad aumentada, guarda renders en alta resolución y exporta modelos USDZ. Sin suscripción."], ["Editor", "Editor"], ["Edit the rules directly", "Edita las reglas directamente"], ["Parametric and stochastic productions, defines and tropism. Change an angle or a probability and the tree regrows in 3D.", "Producciones paramétricas y estocásticas, definiciones y tropismo. Cambia un ángulo o una probabilidad y el árbol vuelve a crecer en 3D."], ["Support", "Soporte"], ["Questions, bugs or ideas? Send me an email. I read everything and usually reply within a couple of days.", "¿Dudas, errores o ideas? Mándame un correo. Lo leo todo y suelo responder en un par de días."], ["Show email address", "Mostrar dirección de correo"], ["Which devices are supported?", "¿Qué dispositivos son compatibles?"], ["iPad and iPhone running iPadOS 26 or iOS 26 or later.", "iPad y iPhone con iPadOS 26 o iOS 26 o posterior."], ["How do I restore my Pro purchase?", "¿Cómo restauro mi compra Pro?"], ["Open Settings in the app and tap Restore Purchases, signed in with the same Apple Account you bought it with.", "Abre Ajustes en la app y toca Restaurar compras, con la misma cuenta de Apple con la que la compraste."], ["What format do 3D exports use?", "¿En qué formato se exporta en 3D?"], ["USDZ, which opens in Quick Look, Reality Composer and most 3D tools. Use the share button to save it to Files or send it to another app.", "USDZ, que se abre en Vista Rápida, Reality Composer y la mayoría de herramientas 3D. Usa el botón de compartir para guardarlo en Archivos o enviarlo a otra app."], ["Reporting a bug", "Informar de un error"], ["Include your device, iOS version, app version and, if you can, the rules that caused the problem.", "Indica tu dispositivo, la versión de iOS, la versión de la app y, si puedes, las reglas que causaron el problema."], ["Privacy", "Privacidad"], ["Effective 4 November 2026", "En vigor desde el 4 de noviembre de 2026"], ["The short version: Arbor Lab doesn’t collect any personal data.", "En resumen: Arbor Lab no recoge ningún dato personal."], ["<strong>No accounts, no tracking.</strong> There’s no sign-up, no analytics and no advertising. Nothing you make leaves your device unless you share or export it yourself.", "<strong>Sin cuentas ni rastreo.</strong> No hay registro, ni analíticas, ni publicidad. Nada de lo que creas sale de tu dispositivo salvo que lo compartas o lo exportes tú."], ["<strong>Your creations stay on your device.</strong> Rules, trees and exports are stored locally (and in your iCloud, if you use iCloud backup), not on any server of mine.", "<strong>Tus creaciones se quedan en tu dispositivo.</strong> Las reglas, los árboles y las exportaciones se guardan en local (y en tu iCloud, si usas la copia de seguridad de iCloud), no en ningún servidor mío."], ["<strong>Camera use for AR.</strong> When you use AR, the camera feed is processed on your device by Apple’s ARKit to place the tree. It isn’t recorded or sent anywhere. Photos you take are saved only where you choose.", "<strong>Uso de la cámara para RA.</strong> Cuando usas la realidad aumentada, ARKit de Apple procesa la imagen de la cámara en tu dispositivo para colocar el árbol. No se graba ni se envía a ningún sitio. Las fotos que hagas se guardan solo donde tú elijas."], ["<strong>Purchases are handled by Apple.</strong> Pro and tips go through the App Store. I never see your payment details; Apple’s privacy policy applies to those transactions.", "<strong>Las compras las gestiona Apple.</strong> Pro y las propinas pasan por la App Store. Nunca veo tus datos de pago; a esas transacciones se aplica la política de privacidad de Apple."], ["<strong>Email.</strong> If you write to support, I use your address only to reply, and don’t share it.", "<strong>Correo.</strong> Si escribes a soporte, uso tu dirección solo para responderte y no la comparto."], ["If this policy changes, the updated version will be posted on this page with a new date. Questions? Use the email in <a href=\"#support\">Support</a>.", "Si esta política cambia, la versión actualizada se publicará en esta página con una fecha nueva. ¿Dudas? Usa el correo de <a href=\"#support\">Soporte</a>."], ["<a href=\"#support\">Support</a> · <a href=\"#privacy\">Privacy</a>", "<a href=\"#support\">Soporte</a> · <a href=\"#privacy\">Privacidad</a>"], ["ALT:Arbor Lab on iPad showing a silver birch, with the specimen library and leaf and bark controls", "ALT:Arbor Lab en iPad mostrando un abedul, con la biblioteca de especímenes y los controles de hojas y corteza"], ["ALT:The Arbor Lab tutorial page about the Logo turtle, with a live drawing and a Try it panel", "ALT:La página del tutorial de Arbor Lab sobre la tortuga de Logo, con un dibujo en directo y un panel para probar"], ["ALT:Arbor Lab on iPhone placing a tree in augmented reality, growing out of a glass bottle in a living room", "ALT:Arbor Lab en iPhone colocando un árbol en realidad aumentada, que crece desde una garrafa de cristal en un salón"], ["ALT:Arbor Lab on iPad showing an English oak next to the code editor with its L-system rules", "ALT:Arbor Lab en iPad mostrando un roble común junto al editor de código con sus reglas de L-system"]];
+  var META = {
+    en: { title: document.title, desc: document.querySelector('meta[name=description]').content, subject: 'Arbor Lab support', group: 'Language' },
+    es: { title: 'Arbor Lab: haz crecer árboles con L-systems en iPad y iPhone', desc: 'Arbor Lab te permite hacer crecer árboles en 3D a partir de reglas de L-systems en iPad y iPhone, basado en The Algorithmic Beauty of Plants. Información de soporte y privacidad.', subject: 'Soporte Arbor Lab', group: 'Idioma' }
+  };
+  var text = {}, alt = {};
+  PAIRS.forEach(function (p) {
+    if (p[0].indexOf('ALT:') === 0) alt[p[0].slice(4)] = p[1].slice(4); else text[p[0]] = p[1];
+  });
+  var SEL = 'h1,h2,h3,p,li,a,button,span';
+  var nodes = [];
+  document.querySelectorAll(SEL).forEach(function (el) {
+    if (el.parentElement.closest(SEL)) return;
+    var en = el.innerHTML.trim();
+    if (text[en]) nodes.push({ el: el, en: en, es: text[en], html: true });
+  });
+  document.querySelectorAll('img[alt]').forEach(function (el) {
+    if (alt[el.alt]) nodes.push({ el: el, en: el.alt, es: alt[el.alt], html: false });
+  });
   var email = ['odrakir', 'gmail.com'].join('@');
   var link = document.getElementById('email-link');
-  link.textContent = email;
-  link.href = 'mailto:' + email + '?subject=Arbor%20Lab%20support';
-  link.hidden = false;
-  this.hidden = true;
-  link.focus();
-});
+  var lang = 'en';
+
+  function setLang(l) {
+    lang = l;
+    document.documentElement.lang = l;
+    document.title = META[l].title;
+    document.querySelector('meta[name=description]').content = META[l].desc;
+    nodes.forEach(function (n) {
+      if (n.html) n.el.innerHTML = n[l]; else n.el.alt = n[l];
+    });
+    link.href = 'mailto:' + email + '?subject=' + encodeURIComponent(META[l].subject);
+    document.querySelectorAll('[data-lang]').forEach(function (b) {
+      var on = b.getAttribute('data-lang') === l;
+      b.setAttribute('aria-pressed', on);
+      b.style.background = on ? '#FFFFFF' : 'transparent';
+      b.style.color = on ? '#18241B' : '#4A574D';
+      b.style.boxShadow = on ? '0 1px 3px rgba(24,36,27,0.15)' : 'none';
+    });
+    document.querySelector('[role=group][aria-label]').setAttribute('aria-label', META[l].group);
+    try { localStorage.setItem('arborlab-lang', l); } catch (e) {}
+  }
+
+  document.querySelectorAll('[data-lang]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      setLang(b.getAttribute('data-lang'));
+      try { history.replaceState(null, '', '?lang=' + lang + location.hash); } catch (e) {}
+    });
+  });
+
+  document.getElementById('email-reveal').addEventListener('click', function () {
+    link.textContent = email;
+    link.hidden = false;
+    this.hidden = true;
+    link.focus();
+  });
+
+  var q = new URLSearchParams(location.search).get('lang');
+  var saved = null;
+  try { saved = localStorage.getItem('arborlab-lang'); } catch (e) {}
+  var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+  var start = (q === 'es' || q === 'en') ? q : (saved === 'es' || saved === 'en') ? saved : (/^es\b/i.test(nav) ? 'es' : 'en');
+  setLang(start);
+})();
 </script>
 </body>
 </html>
